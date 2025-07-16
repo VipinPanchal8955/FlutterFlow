@@ -1,0 +1,116 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "phone_number",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "users_created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companies_branches",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "company_doc",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "branch_created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companies_departments",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "company_doc",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "departments_created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companies_designations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "company_doc",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "designations_created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companies",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "company_doc",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "companies_created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "users",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "company_doc",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "users_created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companies",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "companies_status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "companies_created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companies",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "business_name",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "companies_created_time",
+          "order": "DESCENDING"
+        }
+      ]
+    }
+  ]
+}

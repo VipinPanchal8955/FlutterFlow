@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "61572356914",
+    "firebase_url": "https://anvatrix-1wjj3q-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "anvatrix-1wjj3q",
+    "storage_bucket": "anvatrix-1wjj3q.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61572356914:android:584be152f65565074e552b",
+        "android_client_info": {
+          "package_name": "com.mycompany.anvatrix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Q-lwqjakfspNV4ifapf_1yBJzqNmzT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
