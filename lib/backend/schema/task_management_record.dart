@@ -90,6 +90,11 @@ class TaskManagementRecord extends FirestoreRecord {
   String get designationName => _designationName ?? '';
   bool hasDesignationName() => _designationName != null;
 
+  // "task_implement_date" field.
+  DateTime? _taskImplementDate;
+  DateTime? get taskImplementDate => _taskImplementDate;
+  bool hasTaskImplementDate() => _taskImplementDate != null;
+
   void _initializeFields() {
     _employeeId = snapshotData['employee_id'] as String?;
     _employeeName = snapshotData['employee_name'] as String?;
@@ -106,6 +111,7 @@ class TaskManagementRecord extends FirestoreRecord {
     _branchName = snapshotData['branch_name'] as String?;
     _departmentName = snapshotData['department_name'] as String?;
     _designationName = snapshotData['designation_name'] as String?;
+    _taskImplementDate = snapshotData['task_implement_date'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -158,6 +164,7 @@ Map<String, dynamic> createTaskManagementRecordData({
   String? branchName,
   String? departmentName,
   String? designationName,
+  DateTime? taskImplementDate,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -176,6 +183,7 @@ Map<String, dynamic> createTaskManagementRecordData({
       'branch_name': branchName,
       'department_name': departmentName,
       'designation_name': designationName,
+      'task_implement_date': taskImplementDate,
     }.withoutNulls,
   );
 
@@ -202,7 +210,8 @@ class TaskManagementRecordDocumentEquality
         e1?.companyName == e2?.companyName &&
         e1?.branchName == e2?.branchName &&
         e1?.departmentName == e2?.departmentName &&
-        e1?.designationName == e2?.designationName;
+        e1?.designationName == e2?.designationName &&
+        e1?.taskImplementDate == e2?.taskImplementDate;
   }
 
   @override
@@ -221,7 +230,8 @@ class TaskManagementRecordDocumentEquality
         e?.companyName,
         e?.branchName,
         e?.departmentName,
-        e?.designationName
+        e?.designationName,
+        e?.taskImplementDate
       ]);
 
   @override

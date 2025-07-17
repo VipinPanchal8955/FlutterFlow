@@ -30,6 +30,18 @@ enum ChatRole {
   assistant,
 }
 
+enum AIAgentAction {
+  Create,
+  Edit,
+  Delete,
+  Query,
+}
+
+enum AIAgentActionConfirmation {
+  Yes,
+  No,
+}
+
 extension FFEnumExtensions<T extends Enum> on T {
   String serialize() => name;
 }
@@ -51,6 +63,10 @@ T? deserializeEnum<T>(String? value) {
       return RoleForCompany.values.deserialize(value) as T?;
     case (ChatRole):
       return ChatRole.values.deserialize(value) as T?;
+    case (AIAgentAction):
+      return AIAgentAction.values.deserialize(value) as T?;
+    case (AIAgentActionConfirmation):
+      return AIAgentActionConfirmation.values.deserialize(value) as T?;
     default:
       return null;
   }

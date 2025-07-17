@@ -161,6 +161,7 @@ async function _pOSTTaskManagentCollectionCall(context, ffVariables) {
   var branchName = ffVariables["branchName"];
   var departmentName = ffVariables["departmentName"];
   var designationName = ffVariables["designationName"];
+  var taskImplementDate = ffVariables["taskImplementDate"];
   const firebaseCollectionAPIForAdminGroup =
     createFirebaseCollectionAPIForAdminGroup();
 
@@ -186,7 +187,8 @@ async function _pOSTTaskManagentCollectionCall(context, ffVariables) {
   "company_name": "${escapeStringForJson(companyName)}",
   "branch_name": "${escapeStringForJson(branchName)}",
   "department_name": "${escapeStringForJson(departmentName)}",
-  "designation_name": "${escapeStringForJson(designationName)}"
+  "designation_name": "${escapeStringForJson(designationName)}",
+  "task_implement_date": "${escapeStringForJson(taskImplementDate)}"
 }`;
 
   return makeApiRequest({

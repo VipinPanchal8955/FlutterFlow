@@ -16,12 +16,24 @@ class AIAgentStruct extends FFFirebaseStruct {
     String? callAgent,
     String? followupPrompt,
     String? language,
+    AIAgentAction? aIAgentAction,
+    AIAgentActionConfirmation? aIAgentActionConfirmation,
+    String? userName,
+    String? userNumber,
+    String? userGender,
+    String? userRoleInCompany,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _chatRole = chatRole,
         _message = message,
         _callAgent = callAgent,
         _followupPrompt = followupPrompt,
         _language = language,
+        _aIAgentAction = aIAgentAction,
+        _aIAgentActionConfirmation = aIAgentActionConfirmation,
+        _userName = userName,
+        _userNumber = userNumber,
+        _userGender = userGender,
+        _userRoleInCompany = userRoleInCompany,
         super(firestoreUtilData);
 
   // "Chat_Role" field.
@@ -59,6 +71,50 @@ class AIAgentStruct extends FFFirebaseStruct {
 
   bool hasLanguage() => _language != null;
 
+  // "AI_Agent_Action" field.
+  AIAgentAction? _aIAgentAction;
+  AIAgentAction? get aIAgentAction => _aIAgentAction;
+  set aIAgentAction(AIAgentAction? val) => _aIAgentAction = val;
+
+  bool hasAIAgentAction() => _aIAgentAction != null;
+
+  // "AI_Agent_Action_Confirmation" field.
+  AIAgentActionConfirmation? _aIAgentActionConfirmation;
+  AIAgentActionConfirmation? get aIAgentActionConfirmation =>
+      _aIAgentActionConfirmation;
+  set aIAgentActionConfirmation(AIAgentActionConfirmation? val) =>
+      _aIAgentActionConfirmation = val;
+
+  bool hasAIAgentActionConfirmation() => _aIAgentActionConfirmation != null;
+
+  // "user_name" field.
+  String? _userName;
+  String get userName => _userName ?? '';
+  set userName(String? val) => _userName = val;
+
+  bool hasUserName() => _userName != null;
+
+  // "user_number" field.
+  String? _userNumber;
+  String get userNumber => _userNumber ?? '';
+  set userNumber(String? val) => _userNumber = val;
+
+  bool hasUserNumber() => _userNumber != null;
+
+  // "user_gender" field.
+  String? _userGender;
+  String get userGender => _userGender ?? '';
+  set userGender(String? val) => _userGender = val;
+
+  bool hasUserGender() => _userGender != null;
+
+  // "user_role_in_company" field.
+  String? _userRoleInCompany;
+  String get userRoleInCompany => _userRoleInCompany ?? '';
+  set userRoleInCompany(String? val) => _userRoleInCompany = val;
+
+  bool hasUserRoleInCompany() => _userRoleInCompany != null;
+
   static AIAgentStruct fromMap(Map<String, dynamic> data) => AIAgentStruct(
         chatRole: data['Chat_Role'] is ChatRole
             ? data['Chat_Role']
@@ -67,6 +123,18 @@ class AIAgentStruct extends FFFirebaseStruct {
         callAgent: data['call_agent'] as String?,
         followupPrompt: data['followup_prompt'] as String?,
         language: data['language'] as String?,
+        aIAgentAction: data['AI_Agent_Action'] is AIAgentAction
+            ? data['AI_Agent_Action']
+            : deserializeEnum<AIAgentAction>(data['AI_Agent_Action']),
+        aIAgentActionConfirmation:
+            data['AI_Agent_Action_Confirmation'] is AIAgentActionConfirmation
+                ? data['AI_Agent_Action_Confirmation']
+                : deserializeEnum<AIAgentActionConfirmation>(
+                    data['AI_Agent_Action_Confirmation']),
+        userName: data['user_name'] as String?,
+        userNumber: data['user_number'] as String?,
+        userGender: data['user_gender'] as String?,
+        userRoleInCompany: data['user_role_in_company'] as String?,
       );
 
   static AIAgentStruct? maybeFromMap(dynamic data) =>
@@ -78,6 +146,12 @@ class AIAgentStruct extends FFFirebaseStruct {
         'call_agent': _callAgent,
         'followup_prompt': _followupPrompt,
         'language': _language,
+        'AI_Agent_Action': _aIAgentAction?.serialize(),
+        'AI_Agent_Action_Confirmation': _aIAgentActionConfirmation?.serialize(),
+        'user_name': _userName,
+        'user_number': _userNumber,
+        'user_gender': _userGender,
+        'user_role_in_company': _userRoleInCompany,
       }.withoutNulls;
 
   @override
@@ -100,6 +174,30 @@ class AIAgentStruct extends FFFirebaseStruct {
         ),
         'language': serializeParam(
           _language,
+          ParamType.String,
+        ),
+        'AI_Agent_Action': serializeParam(
+          _aIAgentAction,
+          ParamType.Enum,
+        ),
+        'AI_Agent_Action_Confirmation': serializeParam(
+          _aIAgentActionConfirmation,
+          ParamType.Enum,
+        ),
+        'user_name': serializeParam(
+          _userName,
+          ParamType.String,
+        ),
+        'user_number': serializeParam(
+          _userNumber,
+          ParamType.String,
+        ),
+        'user_gender': serializeParam(
+          _userGender,
+          ParamType.String,
+        ),
+        'user_role_in_company': serializeParam(
+          _userRoleInCompany,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -131,6 +229,36 @@ class AIAgentStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        aIAgentAction: deserializeParam<AIAgentAction>(
+          data['AI_Agent_Action'],
+          ParamType.Enum,
+          false,
+        ),
+        aIAgentActionConfirmation: deserializeParam<AIAgentActionConfirmation>(
+          data['AI_Agent_Action_Confirmation'],
+          ParamType.Enum,
+          false,
+        ),
+        userName: deserializeParam(
+          data['user_name'],
+          ParamType.String,
+          false,
+        ),
+        userNumber: deserializeParam(
+          data['user_number'],
+          ParamType.String,
+          false,
+        ),
+        userGender: deserializeParam(
+          data['user_gender'],
+          ParamType.String,
+          false,
+        ),
+        userRoleInCompany: deserializeParam(
+          data['user_role_in_company'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -143,12 +271,29 @@ class AIAgentStruct extends FFFirebaseStruct {
         message == other.message &&
         callAgent == other.callAgent &&
         followupPrompt == other.followupPrompt &&
-        language == other.language;
+        language == other.language &&
+        aIAgentAction == other.aIAgentAction &&
+        aIAgentActionConfirmation == other.aIAgentActionConfirmation &&
+        userName == other.userName &&
+        userNumber == other.userNumber &&
+        userGender == other.userGender &&
+        userRoleInCompany == other.userRoleInCompany;
   }
 
   @override
-  int get hashCode => const ListEquality()
-      .hash([chatRole, message, callAgent, followupPrompt, language]);
+  int get hashCode => const ListEquality().hash([
+        chatRole,
+        message,
+        callAgent,
+        followupPrompt,
+        language,
+        aIAgentAction,
+        aIAgentActionConfirmation,
+        userName,
+        userNumber,
+        userGender,
+        userRoleInCompany
+      ]);
 }
 
 AIAgentStruct createAIAgentStruct({
@@ -157,6 +302,12 @@ AIAgentStruct createAIAgentStruct({
   String? callAgent,
   String? followupPrompt,
   String? language,
+  AIAgentAction? aIAgentAction,
+  AIAgentActionConfirmation? aIAgentActionConfirmation,
+  String? userName,
+  String? userNumber,
+  String? userGender,
+  String? userRoleInCompany,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -168,6 +319,12 @@ AIAgentStruct createAIAgentStruct({
       callAgent: callAgent,
       followupPrompt: followupPrompt,
       language: language,
+      aIAgentAction: aIAgentAction,
+      aIAgentActionConfirmation: aIAgentActionConfirmation,
+      userName: userName,
+      userNumber: userNumber,
+      userGender: userGender,
+      userRoleInCompany: userRoleInCompany,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

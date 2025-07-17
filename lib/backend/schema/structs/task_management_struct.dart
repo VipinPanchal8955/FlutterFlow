@@ -23,6 +23,7 @@ class TaskManagementStruct extends FFFirebaseStruct {
     String? branchName,
     String? departmentName,
     String? designationName,
+    String? taskImplementDate,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _employeeId = employeeId,
         _employeeName = employeeName,
@@ -39,6 +40,7 @@ class TaskManagementStruct extends FFFirebaseStruct {
         _branchName = branchName,
         _departmentName = departmentName,
         _designationName = designationName,
+        _taskImplementDate = taskImplementDate,
         super(firestoreUtilData);
 
   // "employee_id" field.
@@ -146,6 +148,13 @@ class TaskManagementStruct extends FFFirebaseStruct {
 
   bool hasDesignationName() => _designationName != null;
 
+  // "task_implement_date" field.
+  String? _taskImplementDate;
+  String get taskImplementDate => _taskImplementDate ?? '';
+  set taskImplementDate(String? val) => _taskImplementDate = val;
+
+  bool hasTaskImplementDate() => _taskImplementDate != null;
+
   static TaskManagementStruct fromMap(Map<String, dynamic> data) =>
       TaskManagementStruct(
         employeeId: data['employee_id'] as String?,
@@ -163,6 +172,7 @@ class TaskManagementStruct extends FFFirebaseStruct {
         branchName: data['branch_name'] as String?,
         departmentName: data['department_name'] as String?,
         designationName: data['designation_name'] as String?,
+        taskImplementDate: data['task_implement_date'] as String?,
       );
 
   static TaskManagementStruct? maybeFromMap(dynamic data) => data is Map
@@ -185,6 +195,7 @@ class TaskManagementStruct extends FFFirebaseStruct {
         'branch_name': _branchName,
         'department_name': _departmentName,
         'designation_name': _designationName,
+        'task_implement_date': _taskImplementDate,
       }.withoutNulls;
 
   @override
@@ -247,6 +258,10 @@ class TaskManagementStruct extends FFFirebaseStruct {
         ),
         'designation_name': serializeParam(
           _designationName,
+          ParamType.String,
+        ),
+        'task_implement_date': serializeParam(
+          _taskImplementDate,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -328,6 +343,11 @@ class TaskManagementStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
+        taskImplementDate: deserializeParam(
+          data['task_implement_date'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -350,7 +370,8 @@ class TaskManagementStruct extends FFFirebaseStruct {
         companyName == other.companyName &&
         branchName == other.branchName &&
         departmentName == other.departmentName &&
-        designationName == other.designationName;
+        designationName == other.designationName &&
+        taskImplementDate == other.taskImplementDate;
   }
 
   @override
@@ -369,7 +390,8 @@ class TaskManagementStruct extends FFFirebaseStruct {
         companyName,
         branchName,
         departmentName,
-        designationName
+        designationName,
+        taskImplementDate
       ]);
 }
 
@@ -389,6 +411,7 @@ TaskManagementStruct createTaskManagementStruct({
   String? branchName,
   String? departmentName,
   String? designationName,
+  String? taskImplementDate,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,
@@ -410,6 +433,7 @@ TaskManagementStruct createTaskManagementStruct({
       branchName: branchName,
       departmentName: departmentName,
       designationName: designationName,
+      taskImplementDate: taskImplementDate,
       firestoreUtilData: FirestoreUtilData(
         clearUnsetFields: clearUnsetFields,
         create: create,

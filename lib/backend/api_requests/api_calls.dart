@@ -810,6 +810,7 @@ class POSTTaskManagentCollectionCall {
     String? branchName = '',
     String? departmentName = '',
     String? designationName = '',
+    String? taskImplementDate = '',
   }) async {
     final response = await makeCloudCall(
       _kPrivateApiFunctionName,
@@ -831,6 +832,7 @@ class POSTTaskManagentCollectionCall {
           'branchName': branchName,
           'departmentName': departmentName,
           'designationName': designationName,
+          'taskImplementDate': taskImplementDate,
         },
       },
     );
