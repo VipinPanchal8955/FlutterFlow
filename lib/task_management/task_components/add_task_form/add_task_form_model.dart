@@ -55,8 +55,8 @@ class AddTaskFormModel extends FlutterFlowModel<AddTaskFormWidget> {
   bool? checkboxValue;
   // Stores action output result for [Validate Form] action in IconButton widget.
   bool? formValid;
-  // Stores action output result for [AI Agent - Send Message to EnglishGuru] action in IconButton widget.
-  String? englishGuruResponse;
+  // Stores action output result for [AI Agent - Send Message to Task Tittle And Message] action in IconButton widget.
+  Map<String, dynamic>? englishGuruResponse;
   // Stores action output result for [Backend Call - Create Document] action in IconButton widget.
   TaskManagementRecord? taskAssigne;
 

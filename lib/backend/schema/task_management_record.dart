@@ -115,6 +115,11 @@ class TaskManagementRecord extends FirestoreRecord {
   bool get isTaskRequiredProof => _isTaskRequiredProof ?? false;
   bool hasIsTaskRequiredProof() => _isTaskRequiredProof != null;
 
+  // "task_title" field.
+  String? _taskTitle;
+  String get taskTitle => _taskTitle ?? '';
+  bool hasTaskTitle() => _taskTitle != null;
+
   void _initializeFields() {
     _employeeId = snapshotData['employee_id'] as String?;
     _employeeName = snapshotData['employee_name'] as String?;
@@ -136,6 +141,7 @@ class TaskManagementRecord extends FirestoreRecord {
     _userStatus = snapshotData['user_status'] as String?;
     _taskCompletedProof = snapshotData['task_completed_proof'] as String?;
     _isTaskRequiredProof = snapshotData['is_task_required_proof'] as bool?;
+    _taskTitle = snapshotData['task_title'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -193,6 +199,7 @@ Map<String, dynamic> createTaskManagementRecordData({
   String? userStatus,
   String? taskCompletedProof,
   bool? isTaskRequiredProof,
+  String? taskTitle,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -216,6 +223,7 @@ Map<String, dynamic> createTaskManagementRecordData({
       'user_status': userStatus,
       'task_completed_proof': taskCompletedProof,
       'is_task_required_proof': isTaskRequiredProof,
+      'task_title': taskTitle,
     }.withoutNulls,
   );
 
@@ -247,7 +255,8 @@ class TaskManagementRecordDocumentEquality
         e1?.companyDoc == e2?.companyDoc &&
         e1?.userStatus == e2?.userStatus &&
         e1?.taskCompletedProof == e2?.taskCompletedProof &&
-        e1?.isTaskRequiredProof == e2?.isTaskRequiredProof;
+        e1?.isTaskRequiredProof == e2?.isTaskRequiredProof &&
+        e1?.taskTitle == e2?.taskTitle;
   }
 
   @override
@@ -271,7 +280,8 @@ class TaskManagementRecordDocumentEquality
         e?.companyDoc,
         e?.userStatus,
         e?.taskCompletedProof,
-        e?.isTaskRequiredProof
+        e?.isTaskRequiredProof,
+        e?.taskTitle
       ]);
 
   @override

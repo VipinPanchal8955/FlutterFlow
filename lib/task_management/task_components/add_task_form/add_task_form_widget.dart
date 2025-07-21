@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/others/no_data_found/no_data_found_widget.dart';
 import '/task_management/task_components/employee_list_dropdown/employee_list_dropdown_widget.dart';
 import '/task_management/task_components/read_only_text_field_component/read_only_text_field_component_widget.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +56,8 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
       padding: EdgeInsetsDirectional.fromSTEB(12.0, 50.0, 12.0, 0.0),
       child: Container(
         constraints: BoxConstraints(
-          maxWidth: 1200.0,
+          maxWidth: 700.0,
+          maxHeight: 630.0,
         ),
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -87,17 +87,6 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                  child: Container(
-                    width: 60.0,
-                    height: 4.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(2.0),
-                    ),
-                  ),
-                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                   child: Row(
@@ -172,10 +161,6 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
                         children: [
                           Expanded(
                             child: Container(
-                              height: 300.0,
-                              constraints: BoxConstraints(
-                                maxHeight: 300.0,
-                              ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10.0),
                                 border: Border.all(
@@ -267,87 +252,76 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
                                           .around(SizedBox(width: 10.0)),
                                     ),
                                   ),
-                                  SingleChildScrollView(
-                                    primary: false,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  8.0, 0.0, 8.0, 0.0),
-                                          child: Builder(
-                                            builder: (context) {
-                                              final selectedEmployeeData =
-                                                  _model.selectedEmployee
-                                                      .toList();
-                                              if (selectedEmployeeData
-                                                  .isEmpty) {
-                                                return Center(
-                                                  child: NoDataFoundWidget(),
-                                                );
-                                              }
+                                  Container(
+                                    height: 80.0,
+                                    constraints: BoxConstraints(
+                                      maxHeight: 300.0,
+                                    ),
+                                    decoration: BoxDecoration(),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 8.0, 0.0),
+                                      child: Builder(
+                                        builder: (context) {
+                                          final selectedEmployeeData = _model
+                                              .selectedEmployee
+                                              .toList();
 
-                                              return ListView.separated(
-                                                padding: EdgeInsets.symmetric(
-                                                    vertical: 10.0),
-                                                shrinkWrap: true,
-                                                scrollDirection:
-                                                    Axis.vertical,
-                                                itemCount:
-                                                    selectedEmployeeData
-                                                        .length,
-                                                separatorBuilder: (_, __) =>
-                                                    SizedBox(height: 10.0),
-                                                itemBuilder: (context,
-                                                    selectedEmployeeDataIndex) {
-                                                  final selectedEmployeeDataItem =
-                                                      selectedEmployeeData[
-                                                          selectedEmployeeDataIndex];
-                                                  return Card(
-                                                    clipBehavior: Clip
-                                                        .antiAliasWithSaveLayer,
-                                                    color: FlutterFlowTheme
-                                                            .of(context)
-                                                        .secondaryBackground,
-                                                    elevation: 2.0,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius
-                                                              .circular(8.0),
+                                          return ListView.separated(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 10.0),
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount:
+                                                selectedEmployeeData.length,
+                                            separatorBuilder: (_, __) =>
+                                                SizedBox(height: 10.0),
+                                            itemBuilder: (context,
+                                                selectedEmployeeDataIndex) {
+                                              final selectedEmployeeDataItem =
+                                                  selectedEmployeeData[
+                                                      selectedEmployeeDataIndex];
+                                              return Card(
+                                                clipBehavior: Clip
+                                                    .antiAliasWithSaveLayer,
+                                                color: FlutterFlowTheme.of(
+                                                        context)
+                                                    .secondaryBackground,
+                                                elevation: 2.0,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                child: wrapWithModel(
+                                                  model: _model
+                                                      .readOnlyTextFieldComponentModels
+                                                      .getModel(
+                                                    selectedEmployeeDataItem
+                                                        .usersDoc!.id,
+                                                    selectedEmployeeDataIndex,
+                                                  ),
+                                                  updateCallback: () =>
+                                                      safeSetState(() {}),
+                                                  updateOnChange: true,
+                                                  child:
+                                                      ReadOnlyTextFieldComponentWidget(
+                                                    key: Key(
+                                                      'Keyghw_${selectedEmployeeDataItem.usersDoc!.id}',
                                                     ),
-                                                    child: wrapWithModel(
-                                                      model: _model
-                                                          .readOnlyTextFieldComponentModels
-                                                          .getModel(
+                                                    employeeID:
                                                         selectedEmployeeDataItem
-                                                            .usersDoc!.id,
-                                                        selectedEmployeeDataIndex,
-                                                      ),
-                                                      updateCallback: () =>
-                                                          safeSetState(() {}),
-                                                      updateOnChange: true,
-                                                      child:
-                                                          ReadOnlyTextFieldComponentWidget(
-                                                        key: Key(
-                                                          'Keyghw_${selectedEmployeeDataItem.usersDoc!.id}',
-                                                        ),
-                                                        employeeID:
-                                                            selectedEmployeeDataItem
-                                                                .employeeid,
-                                                        employeeName:
-                                                            selectedEmployeeDataItem
-                                                                .displayName,
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
+                                                            .employeeid,
+                                                    employeeName:
+                                                        selectedEmployeeDataItem
+                                                            .displayName,
+                                                  ),
+                                                ),
                                               );
                                             },
-                                          ),
-                                        ),
-                                      ],
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -670,27 +644,8 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
                           ),
                           Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Expanded(
-                                child: Align(
-                                  alignment: AlignmentDirectional(1.0, 1.0),
-                                  child: FlutterFlowIconButton(
-                                    borderRadius: 8.0,
-                                    buttonSize: 52.0,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .deleteAndCancle,
-                                    icon: Icon(
-                                      Icons.clear_rounded,
-                                      color: FlutterFlowTheme.of(context).info,
-                                      size: 24.0,
-                                    ),
-                                    onPressed: () {
-                                      print('IconButton pressed ...');
-                                    },
-                                  ),
-                                ),
-                              ),
                               FlutterFlowIconButton(
                                 borderRadius: 8.0,
                                 buttonSize: 52.0,
@@ -727,11 +682,12 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
                                       FFAppState().CurentUserLogin.usersDoc?.id,
                                       'NA',
                                     ),
-                                    agentCloudFunctionName: 'englishGuru',
+                                    agentCloudFunctionName:
+                                        'taskTittleAndMessage',
                                     provider: 'GOOGLE',
                                     agentJson:
-                                        "{\"status\":\"LIVE\",\"identifier\":{\"name\":\"englishGuru\",\"key\":\"hu39s\"},\"name\":\"EnglishGuru\",\"description\":\"EnglishGuru is a language refinement assistant. It receives raw or casually written task inputs (in any style or tone) from users and rewrites them into polished, easy-to-understand professional English. Its goal is to simplify, clarify, and improve grammar while preserving the original meaning.\",\"aiModel\":{\"provider\":\"GOOGLE\",\"model\":\"gemini-2.0-flash\",\"parameters\":{\"temperature\":{\"inputValue\":1},\"maxTokens\":{\"inputValue\":8192},\"topP\":{\"inputValue\":0.95}},\"messages\":[{\"role\":\"SYSTEM\",\"text\":\"You are EnglishGuru, a friendly and expert assistant who rewrites casual or unstructured task inputs into clear, professional, and grammatically correct English. Your tone must always be simple, polite, and easy to understand — suitable for workplace communication.\\n\\nAvoid complex words or jargon.\\n\\nAlways retain the original meaning of the message.\\n\\nKeep it short, clear, and friendly.\\n\\nDo not include extra comments or explanations — just return the rephrased version.\"}]},\"requestOptions\":{\"requestTypes\":[\"PLAINTEXT\"]},\"responseOptions\":{\"responseType\":\"PLAINTEXT\"}}",
-                                    responseType: 'PLAINTEXT',
+                                        "{\"status\":\"LIVE\",\"identifier\":{\"name\":\"taskTittleAndMessage\",\"key\":\"hu39s\"},\"name\":\"Task Tittle And Message\",\"description\":\"EnglishGuru is a language refinement assistant. It receives raw or casually written task inputs (in any style or tone) from users, rewrites them into polished, easy‑to‑understand professional English, and generates a concise, professional English title for each task. Its goal is to simplify, clarify, and improve grammar while preserving the original meaning.\",\"aiModel\":{\"provider\":\"GOOGLE\",\"model\":\"gemini-2.0-flash\",\"parameters\":{\"temperature\":{\"inputValue\":1},\"maxTokens\":{\"inputValue\":8192},\"topP\":{\"inputValue\":0.95}},\"messages\":[{\"role\":\"SYSTEM\",\"text\":\"You are **EnglishGuru** — a friendly language expert who rewrites casual or unstructured task inputs into clear, professional English for workplace use.\\n\\n❖ Guidelines\\n1. Use simple, polite wording; avoid jargon or complex phrases.  \\n2. Preserve the original meaning.  \\n3. Keep it short, clear, and friendly.  \\n4. Do not add comments or explanations — output only the result.\\n\\n❖ Return format (JSON only)\\n{\\n  \\\"title\\\": \\\"<Concise English title>\\\",\\n  \\\"message\\\": \\\"<Rephrased task in English>\\\"\\n}\\n\"}]},\"requestOptions\":{\"requestTypes\":[\"PLAINTEXT\"]},\"responseOptions\":{\"responseType\":\"JSON\"}}",
+                                    responseType: 'JSON',
                                   ).then((generatedText) {
                                     safeSetState(() => _model
                                         .englishGuruResponse = generatedText);
@@ -753,8 +709,10 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
                                             currentLoop1Item.displayName,
                                         taskFrequency:
                                             _model.taskFrequencyValue,
-                                        employeeTask:
-                                            _model.englishGuruResponse,
+                                        employeeTask: getJsonField(
+                                          _model.englishGuruResponse,
+                                          r'''$.message''',
+                                        ).toString(),
                                         employeeNumber:
                                             currentLoop1Item.phoneNumber,
                                         usersDoc: currentLoop1Item.usersDoc,
@@ -776,6 +734,12 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
                                         companyDoc: currentLoop1Item.companyDoc,
                                         taskStatus: TaskStatus.Pending.name,
                                         userStatus: currentLoop1Item.userStatus,
+                                        isTaskRequiredProof:
+                                            _model.checkboxValue,
+                                        taskTitle: getJsonField(
+                                          _model.englishGuruResponse,
+                                          r'''$.title''',
+                                        ).toString(),
                                       ),
                                       ...mapToFirestore(
                                         {
@@ -792,8 +756,10 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
                                             currentLoop1Item.displayName,
                                         taskFrequency:
                                             _model.taskFrequencyValue,
-                                        employeeTask:
-                                            _model.englishGuruResponse,
+                                        employeeTask: getJsonField(
+                                          _model.englishGuruResponse,
+                                          r'''$.message''',
+                                        ).toString(),
                                         employeeNumber:
                                             currentLoop1Item.phoneNumber,
                                         usersDoc: currentLoop1Item.usersDoc,
@@ -815,6 +781,12 @@ class _AddTaskFormWidgetState extends State<AddTaskFormWidget> {
                                         companyDoc: currentLoop1Item.companyDoc,
                                         taskStatus: TaskStatus.Pending.name,
                                         userStatus: currentLoop1Item.userStatus,
+                                        isTaskRequiredProof:
+                                            _model.checkboxValue,
+                                        taskTitle: getJsonField(
+                                          _model.englishGuruResponse,
+                                          r'''$.title''',
+                                        ).toString(),
                                       ),
                                       ...mapToFirestore(
                                         {
