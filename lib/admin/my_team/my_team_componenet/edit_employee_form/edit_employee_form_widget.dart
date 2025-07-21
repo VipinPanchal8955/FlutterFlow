@@ -358,6 +358,7 @@ class _EditEmployeeFormWidgetState extends State<EditEmployeeFormWidget> {
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -419,6 +420,17 @@ class _EditEmployeeFormWidgetState extends State<EditEmployeeFormWidget> {
                             validator: _model
                                 .employeeNameTextControllerValidator
                                 .asValidator(context),
+                            inputFormatters: [
+                              if (!isAndroid && !isiOS)
+                                TextInputFormatter.withFunction(
+                                    (oldValue, newValue) {
+                                  return TextEditingValue(
+                                    selection: newValue.selection,
+                                    text: newValue.text.toCapitalization(
+                                        TextCapitalization.words),
+                                  );
+                                }),
+                            ],
                           ),
                         ),
                       ),

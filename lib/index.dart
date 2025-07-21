@@ -24,5 +24,5 @@ export '/admin/companies/companies_page/admin_companies/admin_companies_widget.d
 export '/company_owner/company_dashboard/company_dashboard_widget.dart'
     show CompanyDashboardWidget;
 export '/calender/calender_widget.dart' show CalenderWidget;
-export '/task_management/admin_task/admin_task_widget.dart'
+export '/task_management/task_page/admin_task/admin_task_widget.dart'
     show AdminTaskWidget;

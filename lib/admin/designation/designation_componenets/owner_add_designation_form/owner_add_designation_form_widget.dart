@@ -194,7 +194,7 @@ class _OwnerAddDesignationFormWidgetState
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
-                            textCapitalization: TextCapitalization.characters,
+                            textCapitalization: TextCapitalization.sentences,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -263,7 +263,7 @@ class _OwnerAddDesignationFormWidgetState
                                   return TextEditingValue(
                                     selection: newValue.selection,
                                     text: newValue.text.toCapitalization(
-                                        TextCapitalization.characters),
+                                        TextCapitalization.sentences),
                                   );
                                 }),
                             ],

@@ -113,8 +113,6 @@ class MyAIAgentModel extends FlutterFlowModel<MyAIAgentWidget> {
   ApiCallResponse? gETDepartmentsCollectionOwner;
   // Stores action output result for [Backend Call - API (GET Designations Collection Owner)] action in My_AI_Agent widget.
   ApiCallResponse? gETDesignationCollectionOwner;
-  // State field(s) for Chat_Box widget.
-  ScrollController? chatBox;
   // State field(s) for User_Text_Field widget.
   FocusNode? userTextFieldFocusNode;
   TextEditingController? userTextFieldTextController;
@@ -137,13 +135,10 @@ class MyAIAgentModel extends FlutterFlowModel<MyAIAgentWidget> {
   Map<String, dynamic>? jarvisAIResponse;
 
   @override
-  void initState(BuildContext context) {
-    chatBox = ScrollController();
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    chatBox?.dispose();
     userTextFieldFocusNode?.dispose();
     userTextFieldTextController?.dispose();
   }

@@ -331,7 +331,7 @@ class _EditCompanyFormWidgetState extends State<EditCompanyFormWidget> {
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
-                            textCapitalization: TextCapitalization.characters,
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -399,7 +399,7 @@ class _EditCompanyFormWidgetState extends State<EditCompanyFormWidget> {
                                   return TextEditingValue(
                                     selection: newValue.selection,
                                     text: newValue.text.toCapitalization(
-                                        TextCapitalization.characters),
+                                        TextCapitalization.words),
                                   );
                                 }),
                             ],

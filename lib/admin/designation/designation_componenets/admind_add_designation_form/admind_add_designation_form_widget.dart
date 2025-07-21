@@ -250,7 +250,7 @@ class _AdmindAddDesignationFormWidgetState
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
-                            textCapitalization: TextCapitalization.characters,
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -319,7 +319,7 @@ class _AdmindAddDesignationFormWidgetState
                                   return TextEditingValue(
                                     selection: newValue.selection,
                                     text: newValue.text.toCapitalization(
-                                        TextCapitalization.characters),
+                                        TextCapitalization.words),
                                   );
                                 }),
                             ],

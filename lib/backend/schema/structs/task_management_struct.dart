@@ -3,14 +3,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '/backend/schema/util/firestore_util.dart';
+import '/backend/schema/util/schema_util.dart';
+import '/backend/schema/enums/enums.dart';
 
+import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 class TaskManagementStruct extends FFFirebaseStruct {
   TaskManagementStruct({
     String? employeeId,
     String? employeeName,
-    String? taskFrequency,
+    TaskFrequency? taskFrequency,
     String? employeeTask,
     String? taskAssignedDate,
     String? employeeNumber,
@@ -58,9 +61,9 @@ class TaskManagementStruct extends FFFirebaseStruct {
   bool hasEmployeeName() => _employeeName != null;
 
   // "task_frequency" field.
-  String? _taskFrequency;
-  String get taskFrequency => _taskFrequency ?? '';
-  set taskFrequency(String? val) => _taskFrequency = val;
+  TaskFrequency? _taskFrequency;
+  TaskFrequency? get taskFrequency => _taskFrequency;
+  set taskFrequency(TaskFrequency? val) => _taskFrequency = val;
 
   bool hasTaskFrequency() => _taskFrequency != null;
 
@@ -159,7 +162,9 @@ class TaskManagementStruct extends FFFirebaseStruct {
       TaskManagementStruct(
         employeeId: data['employee_id'] as String?,
         employeeName: data['employee_name'] as String?,
-        taskFrequency: data['task_frequency'] as String?,
+        taskFrequency: data['task_frequency'] is TaskFrequency
+            ? data['task_frequency']
+            : deserializeEnum<TaskFrequency>(data['task_frequency']),
         employeeTask: data['employee_task'] as String?,
         taskAssignedDate: data['task_assigned_date'] as String?,
         employeeNumber: data['employee_number'] as String?,
@@ -182,7 +187,7 @@ class TaskManagementStruct extends FFFirebaseStruct {
   Map<String, dynamic> toMap() => {
         'employee_id': _employeeId,
         'employee_name': _employeeName,
-        'task_frequency': _taskFrequency,
+        'task_frequency': _taskFrequency?.serialize(),
         'employee_task': _employeeTask,
         'task_assigned_date': _taskAssignedDate,
         'employee_number': _employeeNumber,
@@ -210,7 +215,7 @@ class TaskManagementStruct extends FFFirebaseStruct {
         ),
         'task_frequency': serializeParam(
           _taskFrequency,
-          ParamType.String,
+          ParamType.Enum,
         ),
         'employee_task': serializeParam(
           _employeeTask,
@@ -278,9 +283,9 @@ class TaskManagementStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        taskFrequency: deserializeParam(
+        taskFrequency: deserializeParam<TaskFrequency>(
           data['task_frequency'],
-          ParamType.String,
+          ParamType.Enum,
           false,
         ),
         employeeTask: deserializeParam(
@@ -398,7 +403,7 @@ class TaskManagementStruct extends FFFirebaseStruct {
 TaskManagementStruct createTaskManagementStruct({
   String? employeeId,
   String? employeeName,
-  String? taskFrequency,
+  TaskFrequency? taskFrequency,
   String? employeeTask,
   String? taskAssignedDate,
   String? employeeNumber,

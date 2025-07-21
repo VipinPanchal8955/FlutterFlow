@@ -456,6 +456,7 @@ class _EditAdminAddEmployeeFormWidgetState
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -517,6 +518,17 @@ class _EditAdminAddEmployeeFormWidgetState
                             validator: _model
                                 .employeeNameTextControllerValidator
                                 .asValidator(context),
+                            inputFormatters: [
+                              if (!isAndroid && !isiOS)
+                                TextInputFormatter.withFunction(
+                                    (oldValue, newValue) {
+                                  return TextEditingValue(
+                                    selection: newValue.selection,
+                                    text: newValue.text.toCapitalization(
+                                        TextCapitalization.words),
+                                  );
+                                }),
+                            ],
                           ),
                         ),
                       ),

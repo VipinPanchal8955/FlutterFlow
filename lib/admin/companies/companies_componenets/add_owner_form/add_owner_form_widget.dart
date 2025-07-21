@@ -198,6 +198,7 @@ class _AddOwnerFormWidgetState extends State<AddOwnerFormWidget> {
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -259,6 +260,17 @@ class _AddOwnerFormWidgetState extends State<AddOwnerFormWidget> {
                             validator: _model
                                 .employeeNameTextControllerValidator
                                 .asValidator(context),
+                            inputFormatters: [
+                              if (!isAndroid && !isiOS)
+                                TextInputFormatter.withFunction(
+                                    (oldValue, newValue) {
+                                  return TextEditingValue(
+                                    selection: newValue.selection,
+                                    text: newValue.text.toCapitalization(
+                                        TextCapitalization.words),
+                                  );
+                                }),
+                            ],
                           ),
                         ),
                       ),

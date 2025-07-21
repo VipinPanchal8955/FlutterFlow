@@ -50,11 +50,6 @@ class TaskManagementRecord extends FirestoreRecord {
   DocumentReference? get taskDoc => _taskDoc;
   bool hasTaskDoc() => _taskDoc != null;
 
-  // "compnay_doc" field.
-  DocumentReference? _compnayDoc;
-  DocumentReference? get compnayDoc => _compnayDoc;
-  bool hasCompnayDoc() => _compnayDoc != null;
-
   // "users_doc" field.
   DocumentReference? _usersDoc;
   DocumentReference? get usersDoc => _usersDoc;
@@ -95,6 +90,31 @@ class TaskManagementRecord extends FirestoreRecord {
   DateTime? get taskImplementDate => _taskImplementDate;
   bool hasTaskImplementDate() => _taskImplementDate != null;
 
+  // "task_status" field.
+  String? _taskStatus;
+  String get taskStatus => _taskStatus ?? '';
+  bool hasTaskStatus() => _taskStatus != null;
+
+  // "company_doc" field.
+  DocumentReference? _companyDoc;
+  DocumentReference? get companyDoc => _companyDoc;
+  bool hasCompanyDoc() => _companyDoc != null;
+
+  // "user_status" field.
+  String? _userStatus;
+  String get userStatus => _userStatus ?? '';
+  bool hasUserStatus() => _userStatus != null;
+
+  // "task_completed_proof" field.
+  String? _taskCompletedProof;
+  String get taskCompletedProof => _taskCompletedProof ?? '';
+  bool hasTaskCompletedProof() => _taskCompletedProof != null;
+
+  // "is_task_required_proof" field.
+  bool? _isTaskRequiredProof;
+  bool get isTaskRequiredProof => _isTaskRequiredProof ?? false;
+  bool hasIsTaskRequiredProof() => _isTaskRequiredProof != null;
+
   void _initializeFields() {
     _employeeId = snapshotData['employee_id'] as String?;
     _employeeName = snapshotData['employee_name'] as String?;
@@ -103,7 +123,6 @@ class TaskManagementRecord extends FirestoreRecord {
     _taskAssignedDate = snapshotData['task_assigned_date'] as DateTime?;
     _employeeNumber = snapshotData['employee_number'] as String?;
     _taskDoc = snapshotData['task_doc'] as DocumentReference?;
-    _compnayDoc = snapshotData['compnay_doc'] as DocumentReference?;
     _usersDoc = snapshotData['users_doc'] as DocumentReference?;
     _taskAssignedByName = snapshotData['task_assigned_by_name'] as String?;
     _taskAssignedByNumber = snapshotData['task_assigned_by_number'] as String?;
@@ -112,6 +131,11 @@ class TaskManagementRecord extends FirestoreRecord {
     _departmentName = snapshotData['department_name'] as String?;
     _designationName = snapshotData['designation_name'] as String?;
     _taskImplementDate = snapshotData['task_implement_date'] as DateTime?;
+    _taskStatus = snapshotData['task_status'] as String?;
+    _companyDoc = snapshotData['company_doc'] as DocumentReference?;
+    _userStatus = snapshotData['user_status'] as String?;
+    _taskCompletedProof = snapshotData['task_completed_proof'] as String?;
+    _isTaskRequiredProof = snapshotData['is_task_required_proof'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -156,7 +180,6 @@ Map<String, dynamic> createTaskManagementRecordData({
   DateTime? taskAssignedDate,
   String? employeeNumber,
   DocumentReference? taskDoc,
-  DocumentReference? compnayDoc,
   DocumentReference? usersDoc,
   String? taskAssignedByName,
   String? taskAssignedByNumber,
@@ -165,6 +188,11 @@ Map<String, dynamic> createTaskManagementRecordData({
   String? departmentName,
   String? designationName,
   DateTime? taskImplementDate,
+  String? taskStatus,
+  DocumentReference? companyDoc,
+  String? userStatus,
+  String? taskCompletedProof,
+  bool? isTaskRequiredProof,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -175,7 +203,6 @@ Map<String, dynamic> createTaskManagementRecordData({
       'task_assigned_date': taskAssignedDate,
       'employee_number': employeeNumber,
       'task_doc': taskDoc,
-      'compnay_doc': compnayDoc,
       'users_doc': usersDoc,
       'task_assigned_by_name': taskAssignedByName,
       'task_assigned_by_number': taskAssignedByNumber,
@@ -184,6 +211,11 @@ Map<String, dynamic> createTaskManagementRecordData({
       'department_name': departmentName,
       'designation_name': designationName,
       'task_implement_date': taskImplementDate,
+      'task_status': taskStatus,
+      'company_doc': companyDoc,
+      'user_status': userStatus,
+      'task_completed_proof': taskCompletedProof,
+      'is_task_required_proof': isTaskRequiredProof,
     }.withoutNulls,
   );
 
@@ -203,7 +235,6 @@ class TaskManagementRecordDocumentEquality
         e1?.taskAssignedDate == e2?.taskAssignedDate &&
         e1?.employeeNumber == e2?.employeeNumber &&
         e1?.taskDoc == e2?.taskDoc &&
-        e1?.compnayDoc == e2?.compnayDoc &&
         e1?.usersDoc == e2?.usersDoc &&
         e1?.taskAssignedByName == e2?.taskAssignedByName &&
         e1?.taskAssignedByNumber == e2?.taskAssignedByNumber &&
@@ -211,7 +242,12 @@ class TaskManagementRecordDocumentEquality
         e1?.branchName == e2?.branchName &&
         e1?.departmentName == e2?.departmentName &&
         e1?.designationName == e2?.designationName &&
-        e1?.taskImplementDate == e2?.taskImplementDate;
+        e1?.taskImplementDate == e2?.taskImplementDate &&
+        e1?.taskStatus == e2?.taskStatus &&
+        e1?.companyDoc == e2?.companyDoc &&
+        e1?.userStatus == e2?.userStatus &&
+        e1?.taskCompletedProof == e2?.taskCompletedProof &&
+        e1?.isTaskRequiredProof == e2?.isTaskRequiredProof;
   }
 
   @override
@@ -223,7 +259,6 @@ class TaskManagementRecordDocumentEquality
         e?.taskAssignedDate,
         e?.employeeNumber,
         e?.taskDoc,
-        e?.compnayDoc,
         e?.usersDoc,
         e?.taskAssignedByName,
         e?.taskAssignedByNumber,
@@ -231,7 +266,12 @@ class TaskManagementRecordDocumentEquality
         e?.branchName,
         e?.departmentName,
         e?.designationName,
-        e?.taskImplementDate
+        e?.taskImplementDate,
+        e?.taskStatus,
+        e?.companyDoc,
+        e?.userStatus,
+        e?.taskCompletedProof,
+        e?.isTaskRequiredProof
       ]);
 
   @override

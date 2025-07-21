@@ -194,7 +194,7 @@ class _OwnerAddDepartmentFormWidgetState
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
-                            textCapitalization: TextCapitalization.characters,
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -263,7 +263,7 @@ class _OwnerAddDepartmentFormWidgetState
                                   return TextEditingValue(
                                     selection: newValue.selection,
                                     text: newValue.text.toCapitalization(
-                                        TextCapitalization.characters),
+                                        TextCapitalization.words),
                                   );
                                 }),
                             ],

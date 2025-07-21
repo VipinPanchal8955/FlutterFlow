@@ -31,15 +31,38 @@ enum ChatRole {
 }
 
 enum AIAgentAction {
+  Query,
   Create,
   Edit,
   Delete,
-  Query,
 }
 
 enum AIAgentActionConfirmation {
   Yes,
   No,
+}
+
+enum AIAgnetName {
+  JARVIS,
+  SOPHIA,
+  ELARA,
+  LYRA,
+  VERA,
+  AKIRA,
+  RIYA,
+}
+
+enum TaskFrequency {
+  OneTime,
+  Daily,
+  Weekly,
+  Monthly,
+  Quarterly,
+}
+
+enum TaskStatus {
+  Done,
+  Pending,
 }
 
 extension FFEnumExtensions<T extends Enum> on T {
@@ -67,6 +90,12 @@ T? deserializeEnum<T>(String? value) {
       return AIAgentAction.values.deserialize(value) as T?;
     case (AIAgentActionConfirmation):
       return AIAgentActionConfirmation.values.deserialize(value) as T?;
+    case (AIAgnetName):
+      return AIAgnetName.values.deserialize(value) as T?;
+    case (TaskFrequency):
+      return TaskFrequency.values.deserialize(value) as T?;
+    case (TaskStatus):
+      return TaskStatus.values.deserialize(value) as T?;
     default:
       return null;
   }

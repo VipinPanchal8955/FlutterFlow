@@ -115,6 +115,11 @@ class UsersRecord extends FirestoreRecord {
   String get usersEditByNumber => _usersEditByNumber ?? '';
   bool hasUsersEditByNumber() => _usersEditByNumber != null;
 
+  // "company_name" field.
+  String? _companyName;
+  String get companyName => _companyName ?? '';
+  bool hasCompanyName() => _companyName != null;
+
   void _initializeFields() {
     _employeeid = snapshotData['employeeid'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -136,6 +141,7 @@ class UsersRecord extends FirestoreRecord {
     _userInactiveDate = snapshotData['user_inactive_date'] as DateTime?;
     _usersEditByName = snapshotData['users_edit_by_name'] as String?;
     _usersEditByNumber = snapshotData['users_edit_by_number'] as String?;
+    _companyName = snapshotData['company_name'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -192,6 +198,7 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? userInactiveDate,
   String? usersEditByName,
   String? usersEditByNumber,
+  String? companyName,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -215,6 +222,7 @@ Map<String, dynamic> createUsersRecordData({
       'user_inactive_date': userInactiveDate,
       'users_edit_by_name': usersEditByName,
       'users_edit_by_number': usersEditByNumber,
+      'company_name': companyName,
     }.withoutNulls,
   );
 
@@ -245,7 +253,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.usersEditTime == e2?.usersEditTime &&
         e1?.userInactiveDate == e2?.userInactiveDate &&
         e1?.usersEditByName == e2?.usersEditByName &&
-        e1?.usersEditByNumber == e2?.usersEditByNumber;
+        e1?.usersEditByNumber == e2?.usersEditByNumber &&
+        e1?.companyName == e2?.companyName;
   }
 
   @override
@@ -269,7 +278,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.usersEditTime,
         e?.userInactiveDate,
         e?.usersEditByName,
-        e?.usersEditByNumber
+        e?.usersEditByNumber,
+        e?.companyName
       ]);
 
   @override

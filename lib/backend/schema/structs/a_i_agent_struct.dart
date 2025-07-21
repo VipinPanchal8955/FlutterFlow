@@ -13,7 +13,7 @@ class AIAgentStruct extends FFFirebaseStruct {
   AIAgentStruct({
     ChatRole? chatRole,
     String? message,
-    String? callAgent,
+    AIAgnetName? callAgent,
     String? followupPrompt,
     String? language,
     AIAgentAction? aIAgentAction,
@@ -21,7 +21,7 @@ class AIAgentStruct extends FFFirebaseStruct {
     String? userName,
     String? userNumber,
     String? userGender,
-    String? userRoleInCompany,
+    Roles? userRoleInCompany,
     FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _chatRole = chatRole,
         _message = message,
@@ -51,9 +51,9 @@ class AIAgentStruct extends FFFirebaseStruct {
   bool hasMessage() => _message != null;
 
   // "call_agent" field.
-  String? _callAgent;
-  String get callAgent => _callAgent ?? '';
-  set callAgent(String? val) => _callAgent = val;
+  AIAgnetName? _callAgent;
+  AIAgnetName? get callAgent => _callAgent;
+  set callAgent(AIAgnetName? val) => _callAgent = val;
 
   bool hasCallAgent() => _callAgent != null;
 
@@ -109,9 +109,9 @@ class AIAgentStruct extends FFFirebaseStruct {
   bool hasUserGender() => _userGender != null;
 
   // "user_role_in_company" field.
-  String? _userRoleInCompany;
-  String get userRoleInCompany => _userRoleInCompany ?? '';
-  set userRoleInCompany(String? val) => _userRoleInCompany = val;
+  Roles? _userRoleInCompany;
+  Roles? get userRoleInCompany => _userRoleInCompany;
+  set userRoleInCompany(Roles? val) => _userRoleInCompany = val;
 
   bool hasUserRoleInCompany() => _userRoleInCompany != null;
 
@@ -120,7 +120,9 @@ class AIAgentStruct extends FFFirebaseStruct {
             ? data['Chat_Role']
             : deserializeEnum<ChatRole>(data['Chat_Role']),
         message: data['message'] as String?,
-        callAgent: data['call_agent'] as String?,
+        callAgent: data['call_agent'] is AIAgnetName
+            ? data['call_agent']
+            : deserializeEnum<AIAgnetName>(data['call_agent']),
         followupPrompt: data['followup_prompt'] as String?,
         language: data['language'] as String?,
         aIAgentAction: data['AI_Agent_Action'] is AIAgentAction
@@ -134,7 +136,9 @@ class AIAgentStruct extends FFFirebaseStruct {
         userName: data['user_name'] as String?,
         userNumber: data['user_number'] as String?,
         userGender: data['user_gender'] as String?,
-        userRoleInCompany: data['user_role_in_company'] as String?,
+        userRoleInCompany: data['user_role_in_company'] is Roles
+            ? data['user_role_in_company']
+            : deserializeEnum<Roles>(data['user_role_in_company']),
       );
 
   static AIAgentStruct? maybeFromMap(dynamic data) =>
@@ -143,7 +147,7 @@ class AIAgentStruct extends FFFirebaseStruct {
   Map<String, dynamic> toMap() => {
         'Chat_Role': _chatRole?.serialize(),
         'message': _message,
-        'call_agent': _callAgent,
+        'call_agent': _callAgent?.serialize(),
         'followup_prompt': _followupPrompt,
         'language': _language,
         'AI_Agent_Action': _aIAgentAction?.serialize(),
@@ -151,7 +155,7 @@ class AIAgentStruct extends FFFirebaseStruct {
         'user_name': _userName,
         'user_number': _userNumber,
         'user_gender': _userGender,
-        'user_role_in_company': _userRoleInCompany,
+        'user_role_in_company': _userRoleInCompany?.serialize(),
       }.withoutNulls;
 
   @override
@@ -166,7 +170,7 @@ class AIAgentStruct extends FFFirebaseStruct {
         ),
         'call_agent': serializeParam(
           _callAgent,
-          ParamType.String,
+          ParamType.Enum,
         ),
         'followup_prompt': serializeParam(
           _followupPrompt,
@@ -198,7 +202,7 @@ class AIAgentStruct extends FFFirebaseStruct {
         ),
         'user_role_in_company': serializeParam(
           _userRoleInCompany,
-          ParamType.String,
+          ParamType.Enum,
         ),
       }.withoutNulls;
 
@@ -214,9 +218,9 @@ class AIAgentStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        callAgent: deserializeParam(
+        callAgent: deserializeParam<AIAgnetName>(
           data['call_agent'],
-          ParamType.String,
+          ParamType.Enum,
           false,
         ),
         followupPrompt: deserializeParam(
@@ -254,9 +258,9 @@ class AIAgentStruct extends FFFirebaseStruct {
           ParamType.String,
           false,
         ),
-        userRoleInCompany: deserializeParam(
+        userRoleInCompany: deserializeParam<Roles>(
           data['user_role_in_company'],
-          ParamType.String,
+          ParamType.Enum,
           false,
         ),
       );
@@ -299,7 +303,7 @@ class AIAgentStruct extends FFFirebaseStruct {
 AIAgentStruct createAIAgentStruct({
   ChatRole? chatRole,
   String? message,
-  String? callAgent,
+  AIAgnetName? callAgent,
   String? followupPrompt,
   String? language,
   AIAgentAction? aIAgentAction,
@@ -307,7 +311,7 @@ AIAgentStruct createAIAgentStruct({
   String? userName,
   String? userNumber,
   String? userGender,
-  String? userRoleInCompany,
+  Roles? userRoleInCompany,
   Map<String, dynamic> fieldValues = const {},
   bool clearUnsetFields = true,
   bool create = false,

@@ -193,7 +193,7 @@ class _OwnerAddBranchFormWidgetState extends State<OwnerAddBranchFormWidget> {
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
-                            textCapitalization: TextCapitalization.characters,
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -262,7 +262,7 @@ class _OwnerAddBranchFormWidgetState extends State<OwnerAddBranchFormWidget> {
                                   return TextEditingValue(
                                     selection: newValue.selection,
                                     text: newValue.text.toCapitalization(
-                                        TextCapitalization.characters),
+                                        TextCapitalization.words),
                                   );
                                 }),
                             ],

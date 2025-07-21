@@ -395,6 +395,7 @@ class _AdminAddEmployeeFormWidgetState
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -456,6 +457,17 @@ class _AdminAddEmployeeFormWidgetState
                             validator: _model
                                 .employeeNameTextControllerValidator
                                 .asValidator(context),
+                            inputFormatters: [
+                              if (!isAndroid && !isiOS)
+                                TextInputFormatter.withFunction(
+                                    (oldValue, newValue) {
+                                  return TextEditingValue(
+                                    selection: newValue.selection,
+                                    text: newValue.text.toCapitalization(
+                                        TextCapitalization.words),
+                                  );
+                                }),
+                            ],
                           ),
                         ),
                       ),
@@ -1045,6 +1057,8 @@ class _AdminAddEmployeeFormWidgetState
                                         userStatus: UsersStatus.Active.name,
                                         companyDoc:
                                             _model.selectedCompnay?.companyDoc,
+                                        companyName:
+                                            _model.employeeCompanyValue,
                                       ),
                                       ...mapToFirestore(
                                         {
@@ -1083,6 +1097,8 @@ class _AdminAddEmployeeFormWidgetState
                                         userStatus: UsersStatus.Active.name,
                                         companyDoc:
                                             _model.selectedCompnay?.companyDoc,
+                                        companyName:
+                                            _model.employeeCompanyValue,
                                       ),
                                       ...mapToFirestore(
                                         {

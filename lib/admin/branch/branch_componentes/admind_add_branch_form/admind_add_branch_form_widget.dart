@@ -249,7 +249,7 @@ class _AdmindAddBranchFormWidgetState extends State<AdmindAddBranchFormWidget> {
                               () => safeSetState(() {}),
                             ),
                             autofocus: true,
-                            textCapitalization: TextCapitalization.characters,
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.next,
                             obscureText: false,
                             decoration: InputDecoration(
@@ -318,7 +318,7 @@ class _AdmindAddBranchFormWidgetState extends State<AdmindAddBranchFormWidget> {
                                   return TextEditingValue(
                                     selection: newValue.selection,
                                     text: newValue.text.toCapitalization(
-                                        TextCapitalization.characters),
+                                        TextCapitalization.words),
                                   );
                                 }),
                             ],

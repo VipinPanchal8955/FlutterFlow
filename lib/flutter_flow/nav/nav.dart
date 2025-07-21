@@ -7,7 +7,6 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
-import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -79,13 +78,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
+          appStateNotifier.loggedIn ? LodingPageWidget() : LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : LoginWidget(),
+              appStateNotifier.loggedIn ? LodingPageWidget() : LoginWidget(),
         ),
         FFRoute(
           name: LoginWidget.routeName,
@@ -110,9 +109,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: AdminDashboardWidget.routeName,
           path: AdminDashboardWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Admin_Dashboard')
-              : AdminDashboardWidget(),
+          builder: (context, params) => AdminDashboardWidget(),
         ),
         FFRoute(
           name: LoginVerificationWidget.routeName,
@@ -120,14 +117,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LoginVerificationWidget(),
         ),
         FFRoute(
-            name: LodingPageWidget.routeName,
-            path: LodingPageWidget.routePath,
-            builder: (context, params) => params.isEmpty
-                ? NavBarPage(initialPage: 'Loding_Page')
-                : NavBarPage(
-                    initialPage: 'Loding_Page',
-                    page: LodingPageWidget(),
-                  )),
+          name: LodingPageWidget.routeName,
+          path: LodingPageWidget.routePath,
+          builder: (context, params) => LodingPageWidget(),
+        ),
         FFRoute(
           name: AdminMyTeamWidget.routeName,
           path: AdminMyTeamWidget.routePath,
@@ -166,9 +159,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: AdminTaskWidget.routeName,
           path: AdminTaskWidget.routePath,
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Admin_Task')
-              : AdminTaskWidget(),
+          builder: (context, params) => AdminTaskWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
